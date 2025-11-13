@@ -1,0 +1,12 @@
+$dark-gray: rgba(128, 128, 128, 0.3);
+$dark-theme-text: whitesmoke;
+$dark-theme-bg: #1f1f1f;
+$pure-white: white;
+$pure-black: black;
+
+@mixin main-layout($left-side-width) {
+    display: grid;
+    grid-template-columns: $left-side-width 1fr;
+    grid-template-rows: auto 1fr;
+    width: 100%;
+}

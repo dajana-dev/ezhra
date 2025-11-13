@@ -1,0 +1,9 @@
+@use "./variables.scss" as *;
+
+.job-list {
+    padding: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}

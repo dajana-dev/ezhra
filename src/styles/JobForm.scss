@@ -1,0 +1,66 @@
+@use "./variables.scss" as *;
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  margin: 1rem auto;
+  padding: 2.3rem;
+  border: 2px solid rgb(95, 175, 212);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  width: 460px;
+  background-color: $dark-theme-bg;
+  //modal
+  position: absolute;
+  z-index: 100;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+
+  div {
+    display: flex;
+    gap: 0.1rem;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  label {
+    font-weight: 500;
+  }
+
+  input,
+  textarea {
+    border: 1px solid rgb(30, 137, 176);
+    border-radius: 3px;
+    font-family: inherit;
+    width: 100%;
+    font-size: inherit;
+    padding: 4px 6px;
+  }
+
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 200px;
+  }
+
+  > :first-child {
+    //job title
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  > div:last-of-type {
+    //unemployed checkbox
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+  }
+}

@@ -1,0 +1,16 @@
+@use "./variables.scss" as *;
+
+aside {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+    padding: 1.2rem;
+    // width: 16rem;
+    border-right: 1px solid $dark-gray;
+
+    ul li {
+        list-style-type: none;
+    }
+}

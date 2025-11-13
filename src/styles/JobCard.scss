@@ -1,0 +1,17 @@
+@use "./variables.scss" as *;
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 98%;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px solid $dark-gray;
+    border-radius: 5px;
+    padding: 0.8rem;
+    height: 4rem;
+    text-decoration: none;
+    color: inherit;
+  
+}

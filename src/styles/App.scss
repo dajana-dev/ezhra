@@ -1,0 +1,10 @@
+@use "./variables.scss" as *;
+
+#app {
+    @include main-layout(16rem);
+    grid-template-areas: 
+    "header header"
+    "sidebar main";
+    height: 100vh;
+}
+

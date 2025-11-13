@@ -1,0 +1,33 @@
+@use "./variables.scss" as *;
+
+header {
+    grid-area: header;
+    height: 4rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border-bottom: 1px solid $dark-gray;
+
+    .logo-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .account {
+        width: 1.5rem;
+    }
+}

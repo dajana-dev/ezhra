@@ -1,0 +1,9 @@
+@use "./variables.scss" as *;
+
+.job-details-container {
+    @include main-layout(8rem);
+    grid-template-areas: 
+    "header header"
+    "details people";
+    height: 100%;
+}
