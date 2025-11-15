@@ -26,3 +26,12 @@ export const deleteJob = async (jobId) => {
         documentId: jobId,
     })
 }
+
+export const fetchSingleJob = async (jobId) => {
+    const response = await databases.getDocument({
+        databaseId: DATABASE_ID,
+        collectionId: COLLECTION_ID,
+        documentId: jobId,
+    });
+    return response;
+}
