@@ -2,7 +2,6 @@ import '../styles/jobDetails.scss';
 import { useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchSingleJob } from '../helpers/appwriteJobData';
-import { cache } from 'react';
 
 const JobDetails = () => {
   const queryClient = useQueryClient();
@@ -23,7 +22,7 @@ const JobDetails = () => {
   const job = !cachedJob ? fetchedJob : cachedJob;
   console.log(job);
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending && !job) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
   if (!job) return <p>Job not found.</p>;
 
