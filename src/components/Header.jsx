@@ -8,7 +8,7 @@ const Header = () => {
     const {theme, toggleTheme} = useTheme();
 
     return ( 
-        <header>
+        <header className="header-header">
             <div className="logo-container">
                 {/* <img src="" alt="ezhra-logo" /> */}
                 <Link to={"/"}><h2>Ezhra</h2></Link>

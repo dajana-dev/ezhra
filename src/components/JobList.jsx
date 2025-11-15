@@ -8,10 +8,9 @@ const JobList = () => {
     queryKey: ['jobList'],
     queryFn: fetchJobsList,
   });
-
-  console.log(data);
+  
   return (
-    <div className="wrapper">
+    <div className="job-list">
       {isPending && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
       {data && (

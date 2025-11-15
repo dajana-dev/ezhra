@@ -1,4 +1,4 @@
-main {
+.main-main-section { //the element main inside MainSection
     grid-area: main;
     overflow: auto;
     display: flex;
@@ -6,13 +6,4 @@ main {
     gap: 1rem;
     justify-content: flex-start;
     align-items: flex-start;
-
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-    }
 }

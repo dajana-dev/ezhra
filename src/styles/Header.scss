@@ -1,6 +1,6 @@
 @use "./variables.scss" as *;
 
-header {
+.header-header { //header elemnt inside Header component
     grid-area: header;
     height: 4rem;
     width: 100%;

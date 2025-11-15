@@ -2,7 +2,7 @@ import "../styles/MainSection.scss"
 
 const MainSection = ({children}) => {
     return ( 
-        <main>
+        <main className="main-main-section">
             {children}
         </main>
      );

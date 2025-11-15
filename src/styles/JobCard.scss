@@ -1,28 +1,27 @@
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 
 .job-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    width: 98%;
-    justify-content: center;
-    align-items: flex-start;
-    border: 1px solid $dark-gray;
-    border-radius: 5px;
-    padding: 0.8rem;
-    height: fit-content;
-    text-decoration: none;
-    color: inherit;
-  
-}
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 98%;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid $dark-gray;
+  border-radius: 5px;
+  padding: 0.8rem;
+  height: fit-content;
+  text-decoration: none;
+  color: inherit;
 
-.header {
+  .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
     button {
-        cursor: pointer;
-        padding: 0.2rem;
+      cursor: pointer;
+      padding: 0.2rem;
     }
+  }
 }
