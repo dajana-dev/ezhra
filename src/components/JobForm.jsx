@@ -2,14 +2,17 @@ import { useState } from 'react';
 import '../styles/JobForm.scss';
 import { postJobData, updateJobData } from '../helpers/appwriteJobData.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-const JobForm = ({ setIsEditJob, isEditJob, initialJob }) => {
+const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
   const inputFields = [
     { name: 'employer', label: 'Employer', type: 'text', required: true },
     { name: 'jobTitle', label: 'Job title', type: 'text', required: true },
     { name: 'jobDetails', label: 'Job details', type: 'textarea', required: true },
     { name: 'unemployed', label: 'Unemployed', type: 'checkbox' },
   ];
+
+  const navigate = useNavigate();
 
   const [jobData, setJobData] = useState(
     initialJob ? {
@@ -34,10 +37,14 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob }) => {
     error,
   } = useMutation({
     mutationFn: postJobData,
-    onSuccess: () => {
+    onSuccess: (newJob) => {
+      console.log(newJob);
+      console.log(newJob.$id);
       queryClient.invalidateQueries({ queryKey: ['jobList'] });
       setTimeout(() => {
-        closeForm();
+        if(newJob.$id) {
+          navigate(`/JobDetails/${newJob.$id}`, {replace : true});
+        }
       }, 1000);
     },
   });
@@ -79,6 +86,14 @@ const { mutateAsync: updateJobMutation } = useMutation({
     }
   };
 
+  const handleCancel = () => {
+    if(onCancel) {
+      onCancel();
+    } else if(setIsEditJob) {
+      setIsEditJob(false);
+    }
+  }
+
   const renderInput = ({ label, name, type, required }) => {
     switch (type) {
       case 'textarea':
@@ -115,7 +130,7 @@ const { mutateAsync: updateJobMutation } = useMutation({
 
   return (
     <form className="job-form" onSubmit={handleSubmit}>
-      <button onClick={()=>setIsEditJob(false)}>Cancel</button>
+      <button onClick={handleCancel}>Cancel</button>
       {inputFields.map(renderInput)}
 
       <button type="Submit" disabled={isPending}>

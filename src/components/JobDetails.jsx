@@ -1,5 +1,5 @@
 import '../styles/jobDetails.scss';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchSingleJob } from '../helpers/appwriteJobData';
 import CandidateList from './CandidateList';
@@ -9,9 +9,12 @@ import { useState } from 'react';
 const JobDetails = () => {
   const [isEditJob, setIsEditJob] = useState(false);
 
-
   const queryClient = useQueryClient();
   const { jobId } = useParams();
+  const navigate = useNavigate();
+  
+  const isNewJob = jobId === 'new';
+
   const cachedJob = queryClient.getQueryData(['jobList'])?.find((job) => job.$id === jobId);
 
   const {
@@ -22,8 +25,20 @@ const JobDetails = () => {
   } = useQuery({
     queryKey: ['job', jobId],
     queryFn: () => fetchSingleJob(jobId),
-    enabled: !cachedJob,
+    enabled: !cachedJob && jobId !== 'new', //added the letter condition because react was still trying to fetch
   });
+
+  if(isNewJob) {
+    return (
+      <div className="job-details">
+        <section className="job-details-container">
+          <div className='job-data-container'>
+            <JobForm onCancel={() => navigate('/')}/>
+          </div>
+        </section>
+      </div>
+    )
+  }
 
   const job = !cachedJob ? fetchedJob : cachedJob;
 

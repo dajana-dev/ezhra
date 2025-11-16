@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
         children: [
             {path: "/", element: <JobList />},
             {path: ":jobId/edit", element: <JobForm mode="edit"/>},
-            {path: "JobDetails/:jobId", element: <JobDetails/>}
+            {path: "JobDetails/:jobId", element: <JobDetails/>},
         ]
     }
 ])
