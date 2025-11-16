@@ -1,3 +1,4 @@
+import { Query } from "appwrite";
 import { databases, DATABASE_ID } from "./appwrite";
 
 const COLLECTION_ID = 'employeedata';
@@ -16,6 +17,9 @@ export const fetchCandidateData = async (jobId) => {
     const response = await databases.listDocuments({
         databaseId: DATABASE_ID,
         collectionId: COLLECTION_ID,
+        queries: [
+            Query.equal('shiftID', jobId)
+        ],
     });
     return response.documents;
 }
