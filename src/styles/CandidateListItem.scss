@@ -1,0 +1,52 @@
+@use "./variables.scss" as *;
+
+.candidate-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .inputs {
+        display: flex;
+        gap: 0.8rem;
+
+        input {
+            width: 100%;
+            background-color: inherit;
+            border: none;
+            padding: 0.2rem 0.4rem;
+            font-size: inherit;
+            color: inherit;
+            font-family: inherit;
+            border-bottom: 1px solid $dark-gray;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.629);
+                font-size: 0.9rem;
+                font-style: italic;
+            }
+        }
+
+        .serial {
+            width: 80px;
+        }
+
+        .name {
+            width: 220px;
+        }
+
+        .phone {
+            width: 150px;
+        }
+    }
+}
+
+
+.error-bubble {
+  position: absolute;
+  background: #f44336;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-top: -2.8rem;
+}
