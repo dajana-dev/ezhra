@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import '../styles/JobForm.scss';
-import { postJobData } from '../helpers/appwriteJobData.js';
+import { postJobData, updateJobData } from '../helpers/appwriteJobData.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-const JobForm = ({ closeForm }) => {
+const JobForm = ({ setIsEditJob, isEditJob, initialJob }) => {
   const inputFields = [
-    { name: 'jobTitle', label: 'Job title', type: 'text', required: true },
     { name: 'employer', label: 'Employer', type: 'text', required: true },
+    { name: 'jobTitle', label: 'Job title', type: 'text', required: true },
     { name: 'jobDetails', label: 'Job details', type: 'textarea', required: true },
     { name: 'unemployed', label: 'Unemployed', type: 'checkbox' },
   ];
 
-  const [jobData, setJobData] = useState({
+  const [jobData, setJobData] = useState(
+    initialJob ? {
+    jobTitle: initialJob.jobTitle,
+    employer: initialJob.employer,
+    jobDetails: initialJob.jobDetails,
+    unemployed: initialJob.unemployed,
+    } : {
     jobTitle: '',
     employer: '',
     jobDetails: '',
@@ -36,9 +42,29 @@ const JobForm = ({ closeForm }) => {
     },
   });
 
+const { mutateAsync: updateJobMutation } = useMutation({
+    mutationFn: updateJobData,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['job', initialJob.$id] });
+      if(isEditJob) {
+        setIsEditJob(false);
+      }
+    },
+    onError: (error) => {
+      console.error(`Failed to update job: ${error.message}`);
+    }
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    postJobDataMutation(jobData);
+    if(initialJob){
+      updateJobMutation({
+        jobId: initialJob.$id,
+        data: jobData,
+      })
+    } else {
+      postJobDataMutation(jobData);
+    }
   };
 
   const handlePressEnter = (e) => {
@@ -59,7 +85,7 @@ const JobForm = ({ closeForm }) => {
         return (
           <div key={label}>
             <label htmlFor={name}>{label}</label>
-            <textarea name={name} id={name} placeholder={`Enter ${label}`} onChange={handleChange} />
+            <textarea name={name} id={name} value={jobData[name]} placeholder={`Enter ${label}`} onChange={handleChange} />
           </div>
         );
       case 'checkbox':
@@ -73,7 +99,7 @@ const JobForm = ({ closeForm }) => {
         return (
           <div key={label}>
             <label htmlFor={name}>{label}: </label>
-            <input type={type} id={name} name={name} placeholder={`Enter ${label}`} required={required} onChange={handleChange} onKeyDown={handlePressEnter} />
+            <input type={type} id={name} name={name} value={jobData[name]} placeholder={`Enter ${label}`} required={required} onChange={handleChange} onKeyDown={handlePressEnter} />
           </div>
         );
     }
@@ -89,7 +115,7 @@ const JobForm = ({ closeForm }) => {
 
   return (
     <form className="job-form" onSubmit={handleSubmit}>
-      <button onClick={closeForm}>Close</button>
+      <button onClick={()=>setIsEditJob(false)}>Cancel</button>
       {inputFields.map(renderInput)}
 
       <button type="Submit" disabled={isPending}>

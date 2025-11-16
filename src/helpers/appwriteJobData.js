@@ -35,3 +35,12 @@ export const fetchSingleJob = async (jobId) => {
     });
     return response;
 }
+
+export const updateJobData = async ({jobId, data}) => {
+    const response = await databases.updateDocument({
+        databaseId: DATABASE_ID,
+        collectionId: COLLECTION_ID,
+        documentId: jobId,
+        data: data,
+    })
+}
