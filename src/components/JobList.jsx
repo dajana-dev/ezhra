@@ -2,6 +2,7 @@ import '../styles/JobList.scss';
 import { fetchJobsList } from '../helpers/appwriteJobData';
 import { useQuery } from '@tanstack/react-query';
 import JobCard from './JobCard';
+import { useModal } from '../store/modalStore';
 
 const JobList = () => {
   const { data, isPending, isError, error } = useQuery({

@@ -5,6 +5,7 @@ import Toolbar from './components/Toolbar';
 import './styles/App.scss';
 import { useTheme } from './store/themeStore';
 import { Outlet } from 'react-router-dom';
+import Modal from './components/Modal';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
         <Toolbar />
         <Outlet />
       </MainSection>
+      <Modal />
     </div>
   );
 };

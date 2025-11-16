@@ -2,9 +2,12 @@ import '../styles/JobCard.scss';
 import { Link } from 'react-router-dom';
 import { deleteJob } from '../helpers/appwriteJobData';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useModal } from '../store/modalStore';
 
 const JobCard = ({ data: { $id, jobTitle, employer, jobDetails, unemployed } }) => {
   const queryClient = useQueryClient();
+
+  const {openModal} = useModal();
 
   const deleteMutation = useMutation({
     mutationFn: deleteJob,
@@ -16,17 +19,22 @@ const JobCard = ({ data: { $id, jobTitle, employer, jobDetails, unemployed } }) 
     },
   });
 
-  const handleDeleteJob = (e) => {
+  const handleDeleteJob = (e, $id) => {
     e.preventDefault(); //prevents the link from navigating
-
-    deleteMutation.mutate($id);
+    e.stopPropagation();
+    openModal({
+      itemId: $id,
+      itemType: 'job',
+      message: 'Are you sure you want to permanently delete this job?',
+      onConfirm: ($id) => deleteMutation.mutate($id),
+    });
   };
 
   return (
     <Link to={`/JobDetails/${$id}`} className="job-card">
       <div className="header">
         <h3>{jobTitle}</h3>
-      <button onClick={handleDeleteJob}>X</button>
+      <button onClick={(e)=>handleDeleteJob(e, $id)}>X</button>
       </div>
       <section>
         <span>{employer}</span>
