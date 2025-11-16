@@ -3,10 +3,10 @@ import '../styles/CandidateListItem.scss';
 
 const CandidateListItem = ({ handleSave, initialCandidate, editingId, setEditingId, handleOpenModal }) => {
   const [candidate, setCandidate] = useState(initialCandidate);
-  const inputRefs = useRef([]);
+  const inputRefs = useRef([]); //focus next input on enter in edit mode
   const [showError, setShowError] = useState(false);
 
-  const listItemRef = useRef(null);
+  const listItemRef = useRef(null); //click away to cancel edit
 
   useEffect(() => {
     const handleClickAway = (e) => {

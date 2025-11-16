@@ -1,23 +1,29 @@
-import { useState } from 'react';
 import '../styles/Toolbar.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
+import UnemployedFilter from './UnemployedFilter';
 
 const Toolbar = () => {
 
-  const [searchTerm, setSearchterm] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const onSubmitSearchTerm = (e) => {
-    setSearchterm(e.target.value);
-  }
+  const isHomePage = location.pathname === "/";
 
   return (
     <div className="toolbar">
-      <Link to="/JobDetails/new">Create</Link>
+      {isHomePage ? (
+        <>
+        <Link to="/JobDetails/new">Create</Link>
       <div className="tools">
         <SearchBar/>
-        <div className="filer">Filter</div>
+        <UnemployedFilter/>
       </div>
+        </>
+      ) : (
+        <button onClick={() => navigate("/")}>Back</button>
+      )}
+      
     </div>
   );
 };

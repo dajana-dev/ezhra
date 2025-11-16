@@ -18,7 +18,6 @@ const App = () => {
       <Header />
       <Sidebar />
       <MainSection>
-        <Toolbar />
         <Outlet />
       </MainSection>
       <Modal />
