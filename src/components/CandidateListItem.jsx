@@ -1,10 +1,26 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import '../styles/CandidateListItem.scss';
 
-const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, handleOpenModal }) => {
+const CandidateListItem = ({ handleSave, initialCandidate, editingId, setEditingId, handleOpenModal }) => {
   const [candidate, setCandidate] = useState(initialCandidate);
   const inputRefs = useRef([]);
   const [showError, setShowError] = useState(false);
+
+  const listItemRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickAway = (e) => {
+      if(listItemRef.current && !listItemRef.current.contains(e.target)) {
+        setEditingId(null);
+      }
+    };
+    if(editingId) {
+      document.addEventListener('click', handleClickAway);
+    };
+    return () => {
+      document.removeEventListener('click', handleClickAway);  
+    };
+  }, [editingId]);
 
   const { $id, serial, name, phone } = candidate;
 
@@ -31,7 +47,7 @@ const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, 
   const editModeOff = () => {
     if (candidate.serial || candidate.name) {
       setEditingId(null);
-      onSave(candidate);
+      handleSave(candidate);
       setShowError(false);
     } else {
       setShowError(true);
@@ -50,7 +66,7 @@ const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, 
   };
 
   return (
-    <li className={`candidate-item ${!editingId ? 'clickable' : ''}`} onClick={!editingId ? editModeOn : undefined} title={!editingId ? 'Click to edit' : ''}>
+    <li className={`candidate-item ${!editingId ? 'clickable' : ''}`} onClick={!editingId ? editModeOn : undefined} title={!editingId ? 'Click to edit' : ''} ref={listItemRef}>
       <div className="inputs">
         {inputs.map((input, index) => (
           <div key={input.name} className={input.name}>

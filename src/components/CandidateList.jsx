@@ -79,7 +79,7 @@ const CandidateList = ({ jobId }) => {
     setCandidateToDelete(null);
   }
 
-  const onSave = (candidate) => {
+  const handleSave = (candidate) => {
     if (candidate.$id) {
       const { $id, ...data } = candidate;
       updateCandidateMutation({
@@ -112,15 +112,18 @@ const CandidateList = ({ jobId }) => {
             initialCandidate={candidate}
             setEditingId={setEditingId}
             editingId={editingId === candidate.$id}
-            onSave={onSave}
+            handleSave={handleSave}
             handleOpenModal={handleOpenModal}
           />
         ))}
         {editingId === 'new' && (
-          <CandidateListItem key="new-candidate" initialCandidate={initialCandidate} setEditingId={setEditingId} editingId={true} onSave={onSave} />
+          <CandidateListItem key="new-candidate" initialCandidate={initialCandidate} setEditingId={setEditingId} editingId={true} handleSave={handleSave} />
         )}
       </ol>
-      <button onClick={handleAddCandidate} disabled={isPostPending}>
+      <button onClick={(e) => {
+        e.stopPropagation();
+        handleAddCandidate();
+      }} disabled={isPostPending}>
         {isPostPending ? 'Adding...' : 'Add'}
       </button>
     </>
