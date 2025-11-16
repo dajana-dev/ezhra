@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import '../styles/CandidateListItem.scss';
 
-const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, onDelete }) => {
+const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, handleOpenModal }) => {
   const [candidate, setCandidate] = useState(initialCandidate);
   const inputRefs = useRef([]);
   const [showError, setShowError] = useState(false);
@@ -73,9 +73,7 @@ const CandidateListItem = ({ onSave, initialCandidate, editingId, setEditingId, 
       </div>
       {editingId && showError && <span className="error-bubble">Either name or serial must be filled</span>}
       <div className="buttons">{editingId && <button onClick={editModeOff}>Save</button>}
-      <button onClick={(e)=>{
-        e.stopPropagation();
-        onDelete($id)}}>X</button>
+      <button onClick={(e) => handleOpenModal(e, $id)}>X</button>
       </div>
     </li>
   );
