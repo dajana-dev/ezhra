@@ -1,16 +1,37 @@
-# React + Vite
+# EZHRA - Job Tracker App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An app to track job applications and candidates. You can add jobs, add candidates to those jobs, and keep everything organized.
 
-Currently, two official plugins are available:
+## What I Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React (for building the app)
+- Vite (makes React faster)
+- Appwrite (stores the data)
+- SCSS (makes it look pretty)
 
-## React Compiler
+## Appwrite Setup (if you want to run this)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Create an Appwrite project with:
 
-## Expanding the ESLint configuration
+**Database:** JobTracker
+- **Collection 1: Jobs**
+  - jobTitle (string)
+  - employer (string)
+  - jobDetails (string)
+  - unemployed (boolean)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Collection 2: EmployeeData** 
+  - serial (string)
+  - name (string)
+  - shiftID (string, relationship to Jobs)
+  - phone (string)
+
+Then add your IDs to `.env`
+
+## What the App Does
+
+- ✅ Add/edit/delete jobs
+- ✅ Add/edit/delete candidates for each job
+- ✅ Search for jobs
+- ✅ Switch between light and dark mode
+- ✅ Filter to show only unemployed candidates

@@ -43,4 +43,5 @@ export const updateJobData = async ({jobId, data}) => {
         documentId: jobId,
         data: data,
     })
+    return response;
 }

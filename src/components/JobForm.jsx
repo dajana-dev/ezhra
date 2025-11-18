@@ -57,6 +57,7 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
     mutationFn: updateJobData,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['job', initialJob.$id] });
+      queryClient.invalidateQueries({ queryKey: ['jobList'] });
       if (isEditJob) {
         setIsEditJob(false);
       }

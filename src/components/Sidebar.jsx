@@ -5,8 +5,8 @@ const Sidebar = () => {
         <aside>
             <ul title="Coming soon...">
                 <li>Archive</li>
-                <li>Settings</li>
                 <li>Favourites</li>
+                <li>Settings</li>
             </ul>
         </aside>
      );
