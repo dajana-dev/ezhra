@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import '../styles/CandidateListItem.scss';
+import Button from './Button'
 
 const CandidateListItem = ({ handleSave, initialCandidate, editingId, setEditingId, handleOpenModal }) => {
   const [candidate, setCandidate] = useState(initialCandidate);
@@ -88,8 +89,8 @@ const CandidateListItem = ({ handleSave, initialCandidate, editingId, setEditing
         ))}
       </div>
       {editingId && showError && <span className="error-bubble">Either name or serial must be filled</span>}
-      <div className="buttons">{editingId && <button onClick={editModeOff}>Save</button>}
-      <button onClick={(e) => handleOpenModal(e, $id)}>X</button>
+      <div className="candidate-buttons">{editingId && <Button onClick={editModeOff}>Save</Button>}
+      <Button variant='delete' onClick={(e) => handleOpenModal(e, $id)}>X</Button>
       </div>
     </li>
   );

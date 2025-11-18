@@ -5,6 +5,7 @@ import { fetchSingleJob } from '../helpers/appwriteJobData';
 import CandidateList from './CandidateList';
 import JobForm from './JobForm';
 import { useState } from 'react';
+import Button from './Button'
 
 const JobDetails = () => {
   const [isEditJob, setIsEditJob] = useState(false);
@@ -65,7 +66,7 @@ const JobDetails = () => {
             <header>
           <div>
           <h2>{employer}</h2>
-          <button onClick={()=> {setIsEditJob(true)}}>Edit</button>
+          <Button onClick={()=> {setIsEditJob(true)}}>Edit</Button>
           </div>
           <p>{formattedCreatedAtDate}.</p>
         </header>

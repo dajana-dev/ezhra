@@ -1,0 +1,46 @@
+@use './variables.scss' as *;
+
+.search-bar {
+  font-family: inherit;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  max-width: 500px;
+
+  input[type='search'] {
+    font-family: inherit;
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 1px solid $pale-sky;
+    border-radius: 50px;
+    background-color: $pure-white;
+    transition: all 0.2s ease;
+    outline: none;
+
+    &::placeholder {
+      color: $mist-gray;
+      font-family: inherit;
+    }
+
+    &:focus {
+      border-color: $deep-twilight;
+    }
+  }
+
+  .search-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 50px;
+    padding: 0.4rem;
+
+    img, svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(103deg) brightness(105%) contrast(105%);
+        border-radius: 50px;
+    }
+  }
+}

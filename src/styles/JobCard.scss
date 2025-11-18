@@ -7,21 +7,51 @@
   width: 98%;
   justify-content: center;
   align-items: flex-start;
-  border: 1px solid $dark-gray;
-  border-radius: 5px;
-  padding: 0.8rem;
+  // border: 1px solid $frosted-blue;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
   height: fit-content;
   text-decoration: none;
-  color: inherit;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--card-gradient-start) 0%, var(--card-gradient-end) 100%);
+
+  &:hover {
+    filter: brightness(1.05);
+    transform: scale(1.003);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  }
 
   .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
 
-    button {
+    .delete-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      padding: 0.5rem;
       cursor: pointer;
-      padding: 0.2rem;
+
+      &:hover {
+        img,
+        svg {
+          filter: invert(100%) sepia(100%) saturate(2%) hue-rotate(42deg) brightness(107%) contrast(101%);
+        }
+      }
+
+      img,
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+    }
+  }
+
+  .job-card-details {
+    span:first-of-type {
+      font-weight: 700;
     }
   }
 }

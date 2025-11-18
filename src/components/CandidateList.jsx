@@ -3,8 +3,9 @@ import { deleteCandidate, fetchCandidateData, postCandidateData, updateCandidate
 import CandidateListItem from './CandidateListItem';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import Modal from './Modal';
 import { useModal } from '../store/modalStore';
+import Button from './Button'
+import '../styles/CandidateList.scss';
 
 const CandidateList = ({ jobId }) => {
   const [editingId, setEditingId] = useState(null);
@@ -89,11 +90,11 @@ const CandidateList = ({ jobId }) => {
   };
 
   return (
-    <>
+    <div className='candidates-field'>
       {isFetchError && <div className="error-bubble">Failed to load candidates: {fetchError.message}</div>}
       {errorMessage && <div className="error-bubble">{errorMessage}</div>}
 
-      <ol>
+      <ol className='candidate-list'>
         {candidates.map((candidate) => (
           <CandidateListItem
             key={candidate.$id}
@@ -108,13 +109,11 @@ const CandidateList = ({ jobId }) => {
           <CandidateListItem key="new-candidate" initialCandidate={initialCandidate} setEditingId={setEditingId} editingId={true} handleSave={handleSave} />
         )}
       </ol>
-      <button onClick={(e) => {
+      <Button onClick={(e) => {
         e.stopPropagation();
         handleAddCandidate();
-      }} disabled={isPostPending}>
-        {isPostPending ? 'Adding...' : 'Add'}
-      </button>
-    </>
+      }} disabled={isPostPending}>{isPostPending ? 'Adding...' : 'Add'}</Button>
+    </div>
   );
 };
 

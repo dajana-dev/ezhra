@@ -3,11 +3,10 @@ import "../styles/Sidebar.scss"
 const Sidebar = () => {
     return ( 
         <aside>
-            <ul>
-                <li>Item One</li>
-                <li>Item Two</li>
-                <li>Item Three</li>
-                <li>Item Four</li>
+            <ul title="Coming soon...">
+                <li>Archive</li>
+                <li>Settings</li>
+                <li>Favourites</li>
             </ul>
         </aside>
      );

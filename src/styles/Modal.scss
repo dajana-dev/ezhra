@@ -1,17 +1,43 @@
+@use './variables.scss' as *;
+
 .modal {
   position: absolute;
   z-index: 100;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -30%);
-  background-color: inherit;
+  background-color: $pure-white;
   width: 400px;
-  padding: 1rem;
-  border-radius: 5px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.8rem 2rem;
+  text-align: center;
+  h4 {
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
 
   .modal-buttons {
+    width: 100%;
     display: flex;
-    gap: 1rem;
     justify-content: space-around;
   }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

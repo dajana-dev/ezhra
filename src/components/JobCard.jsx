@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { deleteJob } from '../helpers/appwriteJobData';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useModal } from '../store/modalStore';
+import Button from './Button'
+import deleteIcon from '../assets/delete.svg';
 
 const JobCard = ({ data: { $id, jobTitle, employer, jobDetails, unemployed } }) => {
   const queryClient = useQueryClient();
@@ -34,12 +36,12 @@ const JobCard = ({ data: { $id, jobTitle, employer, jobDetails, unemployed } }) 
     <Link to={`/JobDetails/${$id}`} className="job-card">
       <div className="header">
         <h3>{jobTitle}</h3>
-      <button onClick={(e)=>handleDeleteJob(e, $id)}>X</button>
+        <Button variant="delete" className='delete-button' onClick={(e)=>handleDeleteJob(e, $id)}><img src={deleteIcon} alt="Delete" /></Button>
       </div>
-      <section>
-        <span>{employer}</span>
-        <span>{jobDetails}</span>
-        {unemployed && <span>Unemployed</span>}
+      <section className='job-card-details'>
+        <span>{employer} - </span>
+        <span>{jobDetails} </span>
+        {/* {unemployed && <span>Unemployed</span>} */}
       </section>
     </Link>
   );

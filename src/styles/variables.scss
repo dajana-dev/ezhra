@@ -1,8 +1,20 @@
-$dark-gray: rgba(128, 128, 128, 0.3);
+$dark-gray: rgba(55, 126, 164, 0.335);
 $dark-theme-text: whitesmoke;
 $dark-theme-bg: #1f1f1f;
 $pure-white: white;
 $pure-black: black;
+$mist-gray: #6c757d;
+$deep-twilight: #03045e;
+$bright-teal-blue: #0077b6ff;
+$turquoise-surf: #00b4d8ff;
+$turquoise-surf-dark: #05748a;
+$frosted-blue: #90e0efff;
+$light-cyan: #caf0f8ff;
+$light-cyan-dark: #9cbdc3;
+$ghost-white: #e8e8f0;
+$pale-sky: #b8d0ebff;
+$icy-aqua: #b9faf8ff;
+$dusty-red: #971421;
 
 @mixin main-layout($left-side-width) {
     display: grid;

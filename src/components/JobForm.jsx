@@ -3,6 +3,7 @@ import '../styles/JobForm.scss';
 import { postJobData, updateJobData } from '../helpers/appwriteJobData.js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import Button from './Button.jsx';
 
 const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
   const inputFields = [
@@ -15,17 +16,20 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
   const navigate = useNavigate();
 
   const [jobData, setJobData] = useState(
-    initialJob ? {
-    jobTitle: initialJob.jobTitle,
-    employer: initialJob.employer,
-    jobDetails: initialJob.jobDetails,
-    unemployed: initialJob.unemployed,
-    } : {
-    jobTitle: '',
-    employer: '',
-    jobDetails: '',
-    unemployed: false,
-  });
+    initialJob
+      ? {
+          jobTitle: initialJob.jobTitle,
+          employer: initialJob.employer,
+          jobDetails: initialJob.jobDetails,
+          unemployed: initialJob.unemployed,
+        }
+      : {
+          jobTitle: '',
+          employer: '',
+          jobDetails: '',
+          unemployed: false,
+        }
+  );
 
   const queryClient = useQueryClient();
 
@@ -42,33 +46,33 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
       console.log(newJob.$id);
       queryClient.invalidateQueries({ queryKey: ['jobList'] });
       setTimeout(() => {
-        if(newJob.$id) {
-          navigate(`/JobDetails/${newJob.$id}`, {replace : true});
+        if (newJob.$id) {
+          navigate(`/JobDetails/${newJob.$id}`, { replace: true });
         }
       }, 1000);
     },
   });
 
-const { mutateAsync: updateJobMutation } = useMutation({
+  const { mutateAsync: updateJobMutation } = useMutation({
     mutationFn: updateJobData,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['job', initialJob.$id] });
-      if(isEditJob) {
+      if (isEditJob) {
         setIsEditJob(false);
       }
     },
     onError: (error) => {
       console.error(`Failed to update job: ${error.message}`);
-    }
+    },
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(initialJob){
+    if (initialJob) {
       updateJobMutation({
         jobId: initialJob.$id,
         data: jobData,
-      })
+      });
     } else {
       postJobDataMutation(jobData);
     }
@@ -87,12 +91,12 @@ const { mutateAsync: updateJobMutation } = useMutation({
   };
 
   const handleCancel = () => {
-    if(onCancel) {
+    if (onCancel) {
       onCancel();
-    } else if(setIsEditJob) {
+    } else if (setIsEditJob) {
       setIsEditJob(false);
     }
-  }
+  };
 
   const renderInput = ({ label, name, type, required }) => {
     switch (type) {
@@ -105,7 +109,7 @@ const { mutateAsync: updateJobMutation } = useMutation({
         );
       case 'checkbox':
         return (
-          <div key={label}>
+          <div key={label} className={name}>
             <input type={type} id={name} name={name} checked={jobData[name]} onChange={handleChange} />
             <label>{label}</label>
           </div>
@@ -114,7 +118,16 @@ const { mutateAsync: updateJobMutation } = useMutation({
         return (
           <div key={label}>
             <label htmlFor={name}>{label}: </label>
-            <input type={type} id={name} name={name} value={jobData[name]} placeholder={`Enter ${label}`} required={required} onChange={handleChange} onKeyDown={handlePressEnter} />
+            <input
+              type={type}
+              id={name}
+              name={name}
+              value={jobData[name]}
+              placeholder={`Enter ${label}`}
+              required={required}
+              onChange={handleChange}
+              onKeyDown={handlePressEnter}
+            />
           </div>
         );
     }
@@ -130,13 +143,16 @@ const { mutateAsync: updateJobMutation } = useMutation({
 
   return (
     <form className="job-form" onSubmit={handleSubmit}>
-      <button onClick={handleCancel}>Cancel</button>
       {inputFields.map(renderInput)}
 
-      <button type="Submit" disabled={isPending}>
-        {isPending ? 'Posting...' : 'Submit'}
-      </button>
-
+      <div className="form-buttons">
+        <Button variant="primary" type="Submit" disabled={isPending}>
+          {isPending ? 'Posting...' : 'Submit'}
+        </Button>
+        <Button variant="primary" onClick={handleCancel}>
+          Cancel
+        </Button>
+      </div>
       {isSuccess && <p>Job posted!</p>}
       {isError && <p>Something went wrong: {error.message}</p>}
     </form>

@@ -1,0 +1,19 @@
+@use './variables.scss' as *;
+
+.unemployed-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+
+  input[type='checkbox'] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: $frosted-blue;
+    // border: 2px solid $pale-sky;
+    // border-radius: 3px;
+    // background-color: $pure-white;
+  }
+}

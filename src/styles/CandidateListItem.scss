@@ -4,6 +4,13 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    // border: 1px solid $dark-gray;
+    background: linear-gradient(180deg, transparent -50%, var(--candidate-gradient-end) 100%);
+    border-radius: 10px;
+    padding: 3px 10px;
+    align-items: center;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    cursor: pointer;
 
     .inputs {
         display: flex;
@@ -20,7 +27,7 @@
             border-bottom: 1px solid $dark-gray;
 
             &::placeholder {
-                color: rgba(255, 255, 255, 0.629);
+                color: $pure-black;
                 font-size: 0.9rem;
                 font-style: italic;
             }
@@ -38,15 +45,20 @@
             width: 150px;
         }
     }
+
+    .candidate-buttons {
+        display: flex;
+        gap: 0.8rem;
+    }
 }
 
 
 .error-bubble {
   position: absolute;
-  background: #f44336;
+  background: $dusty-red;
   color: white;
   padding: 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
-  margin-top: -2.8rem;
+  margin-top: -5rem;
 }

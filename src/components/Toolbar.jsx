@@ -2,6 +2,7 @@ import '../styles/Toolbar.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import UnemployedFilter from './UnemployedFilter';
+import Button from './Button';
 
 const Toolbar = () => {
 
@@ -14,14 +15,14 @@ const Toolbar = () => {
     <div className="toolbar">
       {isHomePage ? (
         <>
-        <Link to="/JobDetails/new">Create</Link>
+        <Link to="/JobDetails/new" className='link button'>Create</Link>
       <div className="tools">
         <SearchBar/>
         <UnemployedFilter/>
       </div>
         </>
       ) : (
-        <button onClick={() => navigate("/")}>Back</button>
+        <Button onClick={() => navigate("/")}>Back</Button>
       )}
       
     </div>

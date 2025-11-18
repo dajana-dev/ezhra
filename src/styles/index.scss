@@ -1,4 +1,4 @@
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 * {
@@ -14,9 +14,40 @@ html {
 .light {
   background-color: $pure-white;
   color: $pure-black;
+
+  --card-gradient-start: #{$frosted-blue};
+  --card-gradient-end: #{$light-cyan};
+
+  --candidate-gradient-end: #{$light-cyan};
+
+  --text: #{$pure-black};
 }
 
 .dark {
   background-color: $dark-theme-bg;
   color: $dark-theme-text;
+
+  --card-gradient-start: #{$turquoise-surf-dark};
+  --card-gradient-end: #{$light-cyan-dark};
+
+  --candidate-gradient-end: #{$turquoise-surf-dark};
+
+  --text: #{$light-cyan};
+
+}
+
+.link {
+  text-decoration: none;
+  color: $pure-white;
+  transition: transform 0.03s ease;
+}
+
+.logo {
+  text-decoration: none;
+  color: $turquoise-surf;
+  transition: transform 0.03s ease;
+
+  &:hover {
+    color: $frosted-blue;
+  }
 }

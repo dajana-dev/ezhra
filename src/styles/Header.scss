@@ -15,9 +15,6 @@
         gap: 1rem;
         justify-content: center;
         align-items: center;
-        a {
-            text-decoration: none;
-        }
     }
 
     .right {
@@ -25,6 +22,10 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+
+        img, svg {
+            filter: invert(34%) sepia(82%) saturate(5999%) hue-rotate(185deg) brightness(94%) contrast(100%);
+        }
     }
 
     .account {
