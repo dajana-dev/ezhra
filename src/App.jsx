@@ -16,7 +16,7 @@ const App = () => {
   }, [theme]);
 
   return (
-    <div id='app' className={theme === 'dark' ? 'dark' : 'light'}>
+    <div id='app'>
       <Header />
       <Sidebar />
       <MainSection>
