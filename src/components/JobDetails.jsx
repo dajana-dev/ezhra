@@ -16,7 +16,7 @@ const JobDetails = () => {
   
   const isNewJob = jobId === 'new';
 
-  const cachedJob = queryClient.getQueryData(['jobList'])?.find((job) => job.$id === jobId);
+  // const cachedJob = queryClient.getQueryData(['jobList'])?.find((job) => job.$id === jobId);
 
   const {
     data: fetchedJob,
@@ -26,7 +26,7 @@ const JobDetails = () => {
   } = useQuery({
     queryKey: ['job', jobId],
     queryFn: () => fetchSingleJob(jobId),
-    enabled: !cachedJob && jobId !== 'new', //added the letter condition because react was still trying to fetch
+    enabled: jobId !== 'new',
   });
 
   if(isNewJob) {
@@ -41,7 +41,7 @@ const JobDetails = () => {
     )
   }
 
-  const job = !cachedJob ? fetchedJob : cachedJob;
+  const job = fetchedJob;
 
   if (isPending && !job) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;

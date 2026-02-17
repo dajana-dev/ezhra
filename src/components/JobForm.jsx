@@ -55,9 +55,9 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
 
   const { mutateAsync: updateJobMutation } = useMutation({
     mutationFn: updateJobData,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['job', initialJob.$id] });
-      queryClient.invalidateQueries({ queryKey: ['jobList'] });
+    onSuccess: async (updatedJob) => {
+      queryClient.setQueryData(['job', initialJob.$id], updatedJob);
+      await queryClient.invalidateQueries({ queryKey: ['jobList'] });
       if (isEditJob) {
         setIsEditJob(false);
       }
