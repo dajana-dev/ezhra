@@ -99,7 +99,7 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
     }
   };
 
-  const renderInput = ({ label, name, type, required }) => {
+  const renderInput = ({ label, name, type, required }, index) => {
     switch (type) {
       case 'textarea':
         return (
@@ -128,6 +128,7 @@ const JobForm = ({ setIsEditJob, isEditJob, initialJob, onCancel }) => {
               required={required}
               onChange={handleChange}
               onKeyDown={handlePressEnter}
+              autoFocus={index === 0}
             />
           </div>
         );
