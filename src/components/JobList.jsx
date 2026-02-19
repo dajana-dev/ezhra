@@ -24,7 +24,7 @@ const JobList = () => {
       {isPending && <p>Loading...</p>}
       {isError && <p>Error: {error.message}</p>}
       {finalData && finalData.length > 0 ? finalData.map((job) => <JobCard key={job.$id} data={job} />) : searchTerm && <p>No jobs found</p>}
-      {/*if there no filtered data but there is a search term, it means tehre are no results for that search term */}
+      {/*if there is no filtered data but there is a search term, it means tehre are no results for that search term */}
     </div>
   );
 };

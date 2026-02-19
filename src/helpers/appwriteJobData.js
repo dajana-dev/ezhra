@@ -1,4 +1,5 @@
 import { databases, DATABASE_ID } from "./appwrite";
+import { Query } from "appwrite";
 
 const COLLECTION_ID = "jobdata";
 
@@ -15,7 +16,9 @@ export const postJobData = async (jobData) => {
 export const fetchJobsList = async () => {
     const response = await databases.listDocuments({
         databaseId: DATABASE_ID,
-        collectionId: COLLECTION_ID});
+        collectionId: COLLECTION_ID,
+        queries: [Query.orderDesc("$createdAt")]
+    });
     return response.documents;
 }
 
