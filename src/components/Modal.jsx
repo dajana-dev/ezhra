@@ -15,7 +15,7 @@ const Modal = () => {
         <div className={`${classes.modal} ${theme === 'light' ? classes['light-theme'] : classes['dark-theme']}`} onClick={(e)=>{e.stopPropagation()}}> {/*{theme === 'light' ? style="background-color:$pure-white;" : style="background-color:$dark-theme-bg;"}*/}
             <h4>{message}</h4>
             <div className={classes['modal-buttons']}>
-                <Button variant="delete" onClick={confirmDelete}>Delete</Button>
+                <Button variant="deleteModal" onClick={confirmDelete}>Delete</Button>
                 <Button variant="primary" onClick={closeModal}>Cancel</Button>
             </div>
         </div>

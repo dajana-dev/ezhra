@@ -1,38 +1,42 @@
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 
-button, .button {
-    padding: 5px 8px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    font-family: inherit;
-    background-color: $turquoise-surf;
+button,
+.button {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  font-family: inherit;
+  background-color: $turquoise-surf;
 
-    &:hover {
-        transform: scale(1.02);
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-        background-color: $frosted-blue;
-    }
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    background-color: $frosted-blue;
+  }
 }
 
 .primary {
-    background-color: $turquoise-surf;
-    color: $pure-white;
-
+  background-color: $turquoise-surf;
+  color: $pure-white;
 }
 
 .delete {
-    background-color: transparent;
-    // border-radius: 20px;
-    // padding: 2rem;
+background-color: transparent;
+  color: var(--delete-button-text);
 
-    &:hover {
-        background-color: $dusty-red;
-        color: $pure-white;
-    }
+  &:hover {
+    background-color: $dusty-red;
+    color: $pure-white;
+  }
+}
+
+.delete-modal {
+    @extend .delete;
+    background-color: var(--delete-button-bg);
 }
 
 .toggle-theme {
-        background-color: $frosted-blue;
-    }
+  background-color: $frosted-blue;
+}

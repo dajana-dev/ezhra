@@ -21,6 +21,8 @@ html {
   --candidate-gradient-end: #{$light-cyan};
 
   --text: #{$pure-black};
+  --delete-button-text: #{$pure-black};
+  --delete-button-bg: #{$ghost-white};
 }
 
 .dark {
@@ -33,6 +35,8 @@ html {
   --candidate-gradient-end: #{$turquoise-surf-dark};
 
   --text: #{$light-cyan};
+  --delete-button-text: #{$pure-white};
+  --delete-button-bg: #{$gray-brown};
 
 }
 

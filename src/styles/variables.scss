@@ -1,4 +1,4 @@
-$dark-gray: rgba(55, 126, 164, 0.335);
+$dark-gray: #377ea455;
 $dark-theme-text: whitesmoke;
 $dark-theme-bg: #1f1f1f;
 $pure-white: white;
@@ -15,6 +15,7 @@ $ghost-white: #e8e8f0;
 $pale-sky: #b8d0ebff;
 $icy-aqua: #b9faf8ff;
 $dusty-red: #971421;
+$gray-brown: #393435;
 
 @mixin main-layout($left-side-width) {
     display: grid;

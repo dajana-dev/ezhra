@@ -4,6 +4,7 @@ const Button = ({variant = 'primary', className = '', children, onClick, ...prop
     const variants = {
         primary: 'primary',
         delete: 'delete',
+        deleteModal: 'delete-modal',
         toggleTheme: 'toggle-theme',
         edit: '',
     }
