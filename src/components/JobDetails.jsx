@@ -1,4 +1,4 @@
-import '../styles/jobDetails.scss';
+import '../styles/JobDetails.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchSingleJob } from '../helpers/appwriteJobData';
